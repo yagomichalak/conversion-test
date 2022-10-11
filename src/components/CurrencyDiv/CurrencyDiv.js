@@ -1,19 +1,40 @@
 import React from 'react';
 import styles from './CurrencyDiv.module.css';
 import CurrencyBox from '../CurrencyBox/CurrencyBox';
+import Utils from '../Utils/Utils';
 
-function CurrencyDiv({num, setNum}) {
-  const currency_origin = "USD";
-  const currency_destiny = "BRL";
+class CurrencyDiv extends Utils {
 
-  const onTextChange=(target) => {
-    setNum(target.value);
+  constructor() {
+    super();
+    this.getAvailableCurrencies();
+  }
+  
+  render() {
+    const currencies = this.availableCurrencies;
+    const currencyOrigin = currencies ? this.availableCurrencies.base_code : "USD";
+    const currencyDestiny = "BRL";
+
+    const onTextChange=(target) => {
+      this.props.setNum(target.value);
+    }
+
+    return (<div className={styles.CurrencyDiv} data-testid="CurrencyDiv">
+      <CurrencyBox
+        onChange={(e)=>onTextChange(e.target)}
+        num={this.props.num}
+        currency={currencyOrigin}
+      ></CurrencyBox>
+
+      <CurrencyBox
+        onChange={(e)=> onTextChange(e.target)}
+        num={this.getCurrencyRate(this.props.num, currencyDestiny)}
+        currency={currencyDestiny}
+        readonly={true}
+      ></CurrencyBox>
+    </div>)
   }
 
-  return (<div className={styles.CurrencyDiv} data-testid="CurrencyDiv">
-    <CurrencyBox onChange={(e)=>onTextChange(e.target)} num={num} currency={currency_origin}></CurrencyBox>
-    <CurrencyBox onChange={(e)=> onTextChange(e.target)} num={num} currency={currency_destiny} readonly={true}></CurrencyBox>
-  </div>)
 }
 
 CurrencyDiv.propTypes = {};

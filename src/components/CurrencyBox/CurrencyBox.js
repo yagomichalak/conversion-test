@@ -12,7 +12,7 @@ function CurrencyBox ({onChange, num, currency, readonly}) {
       type="number"
       className={styles.CurrencyInput}
       data-testid="CurrencyBox"
-      value={num}
+      value={num ? num : 0}
       name="currencyInput"
       readOnly={readonly}
     />

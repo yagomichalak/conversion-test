@@ -6,6 +6,7 @@ import CurrencyDiv from './components/CurrencyDiv/CurrencyDiv';
 function App() {
   
   const [num, setNum] = React.useState(0);
+  
 
   return (
     <div className="App">
