@@ -1,3 +1,7 @@
+:root {
+    --goldenCurrency: #f9ba48;
+}
+
 .CurrencyBox{
     margin: 0px 50px 35px 50px;
     display: flex;
@@ -5,7 +9,7 @@
 
 }
 .CurrencyLabel {
-    color: #f9ba48;
+    color: var(--goldenCurrency);
 }
 
 .CurrencyInput {
@@ -16,7 +20,15 @@
     border-style: none;
 }
 
-.test {
-    height: 100px;
-    width: 100px;
+.CurrencySelect {
+    text-align: center;
+    height: 55px;
+    width: 85px;
+    /* max-width: 50px; */
+    border-radius: 15px;
+    margin: auto;
+    background-color: transparent;
+    font-size: 25px;
+    color: var(--goldenCurrency);
+    border-style: none;
 }

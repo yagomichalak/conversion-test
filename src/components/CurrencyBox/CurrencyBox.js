@@ -1,14 +1,21 @@
 import React from 'react';
 import styles from './CurrencyBox.module.css';
 
-function CurrencyBox ({onChange, num, currency, readonly}) {
-
+function CurrencyBox ({
+  onChange, num, readonly, rateOptions,
+  onCurrencySelectClick, boxId
+}) {
   
-  return <div onChange={onChange} className={styles.CurrencyBox}>
-    <label
-      for="currencyInput"
-      className={styles.CurrencyLabel}>{currency}</label>
+  return <div className={styles.CurrencyBox}>
+    <select
+      className={styles.CurrencySelect}
+      onChange={onCurrencySelectClick}
+      id={boxId}
+    >
+      {rateOptions}
+    </select>
     <input
+      onChange={onChange}
       type="number"
       className={styles.CurrencyInput}
       data-testid="CurrencyBox"

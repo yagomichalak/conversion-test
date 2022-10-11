@@ -4,6 +4,8 @@ import styles from './Utils.module.css';
 class Utils extends Component {
 
   availableCurrencies;
+  currencyOrigin;
+  currencyDestiny;
 
   render() {
     return (
@@ -13,8 +15,35 @@ class Utils extends Component {
     );
   }
 
-  getAvailableCurrencies() {
-    fetch("https://open.er-api.com/v6/latest/USD")
+  onTextChange(target) {
+    var value = target.value
+
+    // Replaces index 0 in case it's a 0
+    if (value.length === 2 && value[0] === "0") {
+      value = this.replaceStringAtIndex(value, 0, "");
+    }
+
+    // Checks if the result is a number
+    if (!isNaN(value)) {
+      value = parseFloat(value);
+    }
+
+    // Sets new value
+    this.props.setNum(value);
+  }
+
+  onCurrencySelectClick(target) {
+    const selectedCurrency = target.value;
+    if (parseInt(target.id) === 1) {
+      // this.getAvailableCurrencies(selectedCurrency)
+      this.props.setCurrencyOrigin(selectedCurrency);
+    } else {
+      this.props.setCurrencyDestiny(selectedCurrency);
+    }
+  }
+
+  getAvailableCurrencies(currency = "USD") {
+    fetch(`https://open.er-api.com/v6/latest/${currency}`)
       .then(response => response.json())
       .then(data => {
         this.availableCurrencies = data;
@@ -38,6 +67,16 @@ class Utils extends Component {
 
   replaceStringAtIndex(string, index, replacement) {
     return string.substring(0, index) + replacement + string.substring(index + 1);
+  }
+
+  getSelectRateOptions(baseCurrency, rates, boxId) {
+
+    var options = rates.map(
+      el => <option value={el} key={el} id={boxId}> {el} </option>
+    );
+
+    return options;
+
   }
 
 }

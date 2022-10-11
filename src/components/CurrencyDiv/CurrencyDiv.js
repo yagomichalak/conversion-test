@@ -12,38 +12,33 @@ class CurrencyDiv extends Utils {
   
   render() {
     const currencies = this.availableCurrencies;
-    const currencyOrigin = currencies ? this.availableCurrencies.base_code : "USD";
-    const currencyDestiny = "BRL";
+    const rates = currencies ? Object.keys(currencies.rates) : [];
 
-    const onTextChange=(target) => {
-      var value = target.value
+    // if (this.props.)
+    this.currencyOrigin = this.props.currencyOrigin ? this.props.currencyOrigin : currencies.base_code;
+    this.currencyDestiny = this.props.currencyDestiny;
 
-      // Replaces index 0 in case it's a 0
-      if (value.length === 2 && value[0] === "0") {
-        value = this.replaceStringAtIndex(value, 0, "");
-      }
+    console.log("Currencies", this.currencyOrigin, this.currencyDestiny);
+    const rateOptionsOrigin = this.getSelectRateOptions(this.props.currencyOrigin, rates);
+    const rateOptionsDestiny = this.getSelectRateOptions(this.props.currencyDestiny, rates);
 
-      // Checks if the result is a number
-      if (!isNaN(value)) {
-        value = parseFloat(value);
-      }
-
-      // Sets new value
-      this.props.setNum(value);
-    }
-
+    //{this.getReverseCurrencyRate(this.props.num, this.props.currencyOrigin)}
     return (<div className={styles.CurrencyDiv} data-testid="CurrencyDiv">
       <CurrencyBox
-        onChange={(e)=>onTextChange(e.target)}
+        onChange={(e) => this.onTextChange(e.target)}
         num={this.props.num}
-        currency={currencyOrigin}
+        rateOptions={rateOptionsOrigin}
+        onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}
+        boxId={1}
       ></CurrencyBox>
 
       <CurrencyBox
-        onChange={(e)=> onTextChange(e.target)}
-        num={this.getCurrencyRate(this.props.num, currencyDestiny)}
-        currency={currencyDestiny}
+        onChange={(e) => this.onTextChange(e.target)}
+        num={this.getCurrencyRate(this.props.num, this.props.currencyDestiny)}
         readonly={true}
+        rateOptions={rateOptionsDestiny}
+        onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}
+        boxId={2}
       ></CurrencyBox>
     </div>)
   }

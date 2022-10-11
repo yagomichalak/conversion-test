@@ -6,8 +6,9 @@ import CurrencyDiv from './components/CurrencyDiv/CurrencyDiv';
 function App() {
   
   const [num, setNum] = React.useState(0);
+  const [currencyOrigin, setCurrencyOrigin] = React.useState("USD");
+  const [currencyDestiny, setCurrencyDestiny] = React.useState("BRL");
   
-
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +16,11 @@ function App() {
         <p>
           Convert a value from a currency to another
         </p>
-        <CurrencyDiv num={num} setNum={setNum}></CurrencyDiv>
+        <CurrencyDiv
+          num={num} setNum={setNum}
+          currencyOrigin={currencyOrigin} setCurrencyOrigin={setCurrencyOrigin}
+          currencyDestiny={currencyDestiny} setCurrencyDestiny={setCurrencyDestiny}
+        ></CurrencyDiv>
         <a
           className="App-link"
           href="https://rroll.to/iHgSMg"
