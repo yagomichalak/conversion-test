@@ -1,21 +1,23 @@
-import logo from './logo.svg';
+import currency from './currency.svg';
 import './App.css';
+import CurrencyDiv from './components/CurrencyDiv/CurrencyDiv';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <img src={currency} width="200" height="200" className="App-currency" alt="currency" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Convert a value from a currency to another
         </p>
+        <CurrencyDiv></CurrencyDiv>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="https://rroll.to/iHgSMg"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Don't click me
         </a>
       </header>
     </div>

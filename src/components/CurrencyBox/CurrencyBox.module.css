@@ -1,0 +1,17 @@
+.CurrencyBox{
+    margin: 0px 50px 35px 50px;
+    display: flex;
+    flex-direction: column;
+
+}
+.CurrencyLabel {
+    color: #f9ba48;
+}
+
+.CurrencyInput {
+    height: 50px;
+    font-size: 14pt;
+    text-indent: 5px;
+    border-radius: 15px;
+    border-style: none;
+}
