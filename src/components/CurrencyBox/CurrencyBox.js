@@ -1,21 +1,23 @@
 import React from 'react';
 import styles from './CurrencyBox.module.css';
 
-const CurrencyBox = ({currency, value, readonly}) => (
-  <div className={styles.CurrencyBox}>
-  <label
-    for="currencyInput"
-    className={styles.CurrencyLabel}>{currency}</label>
-  <input
-    type="number"
-    className={styles.CurrencyInput}
-    data-testid="CurrencyBox"
-    value={value}
-    name="currencyInput"
-    readOnly={readonly}
-  />
+function CurrencyBox ({onChange, num, currency, readonly}) {
+
+  
+  return <div onChange={onChange} className={styles.CurrencyBox}>
+    <label
+      for="currencyInput"
+      className={styles.CurrencyLabel}>{currency}</label>
+    <input
+      type="number"
+      className={styles.CurrencyInput}
+      data-testid="CurrencyBox"
+      value={num}
+      name="currencyInput"
+      readOnly={readonly}
+    />
   </div>
-);
+}
 
 CurrencyBox.propTypes = {};
 

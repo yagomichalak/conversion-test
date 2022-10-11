@@ -1,8 +1,12 @@
+import React from 'react';
 import currency from './currency.svg';
 import './App.css';
 import CurrencyDiv from './components/CurrencyDiv/CurrencyDiv';
 
 function App() {
+  
+  const [num, setNum] = React.useState(0);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -10,7 +14,7 @@ function App() {
         <p>
           Convert a value from a currency to another
         </p>
-        <CurrencyDiv></CurrencyDiv>
+        <CurrencyDiv num={num} setNum={setNum}></CurrencyDiv>
         <a
           className="App-link"
           href="https://rroll.to/iHgSMg"
