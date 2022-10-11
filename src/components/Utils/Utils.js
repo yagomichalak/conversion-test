@@ -35,6 +35,11 @@ class Utils extends Component {
     }
     return parseFloat(num * currency).toFixed(2);
   }
+
+  replaceStringAtIndex(string, index, replacement) {
+    return string.substring(0, index) + replacement + string.substring(index + 1);
+  }
+
 }
 
 Utils.propTypes = {};

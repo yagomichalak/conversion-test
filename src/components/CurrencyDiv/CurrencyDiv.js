@@ -16,7 +16,20 @@ class CurrencyDiv extends Utils {
     const currencyDestiny = "BRL";
 
     const onTextChange=(target) => {
-      this.props.setNum(target.value);
+      var value = target.value
+
+      // Replaces index 0 in case it's a 0
+      if (value.length === 2 && value[0] === "0") {
+        value = this.replaceStringAtIndex(value, 0, "");
+      }
+
+      // Checks if the result is a number
+      if (!isNaN(value)) {
+        value = parseFloat(value);
+      }
+
+      // Sets new value
+      this.props.setNum(value);
     }
 
     return (<div className={styles.CurrencyDiv} data-testid="CurrencyDiv">
