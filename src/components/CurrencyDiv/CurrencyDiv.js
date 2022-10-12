@@ -18,15 +18,16 @@ class CurrencyDiv extends Utils {
     this.currencyOrigin = this.props.currencyOrigin ? this.props.currencyOrigin : currencies.base_code;
     this.currencyDestiny = this.props.currencyDestiny;
 
-    console.log("Currencies", this.currencyOrigin, this.currencyDestiny);
     const rateOptionsOrigin = this.getSelectRateOptions(this.props.currencyOrigin, rates);
     const rateOptionsDestiny = this.getSelectRateOptions(this.props.currencyDestiny, rates);
 
-    //{this.getReverseCurrencyRate(this.props.num, this.props.currencyOrigin)}
+    this.divOriginValue = this.props.num;
+    this.divDestinyValue = this.getCurrencyRate(this.props.num, this.props.currencyDestiny);
+
     return (<div className={styles.CurrencyDiv} data-testid="CurrencyDiv">
       <CurrencyBox
         onChange={(e) => this.onTextChange(e.target)}
-        num={this.props.num}
+        num={this.divOriginValue}
         rateOptions={rateOptionsOrigin}
         onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}
         boxId={1}
@@ -34,7 +35,7 @@ class CurrencyDiv extends Utils {
 
       <CurrencyBox
         onChange={(e) => this.onTextChange(e.target)}
-        num={this.getCurrencyRate(this.props.num, this.props.currencyDestiny)}
+        num={this.divDestinyValue}
         readonly={true}
         rateOptions={rateOptionsDestiny}
         onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}

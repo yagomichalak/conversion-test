@@ -35,8 +35,7 @@ class Utils extends Component {
   onCurrencySelectClick(target) {
     const selectedCurrency = target.value;
     if (parseInt(target.id) === 1) {
-      // this.getAvailableCurrencies(selectedCurrency)
-      this.props.setCurrencyOrigin(selectedCurrency);
+      this.getAvailableCurrencies(selectedCurrency);
     } else {
       this.props.setCurrencyDestiny(selectedCurrency);
     }
@@ -47,8 +46,10 @@ class Utils extends Component {
       .then(response => response.json())
       .then(data => {
         this.availableCurrencies = data;
+        this.props.setCurrencyOrigin(data.base_code);
+        this.divDestinyValue = this.props.num * this.availableCurrencies.rates[this.props.currencyDestiny];
       });
-  }
+  }1
 
   getCurrencyRate(num, currencyDestiny) {
 
@@ -62,6 +63,7 @@ class Utils extends Component {
     if (isNaN(num)) {
       return num;
     }
+
     return parseFloat(num * currency).toFixed(2);
   }
 
