@@ -30,7 +30,8 @@ class CurrencyDiv extends Utils {
         num={this.divOriginValue}
         rateOptions={rateOptionsOrigin}
         onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}
-        boxId={1}
+        boxId={"origin"}
+        currencyDestiny={this.currencyDestiny}
       ></CurrencyBox>
 
       <CurrencyBox
@@ -39,7 +40,8 @@ class CurrencyDiv extends Utils {
         readonly={true}
         rateOptions={rateOptionsDestiny}
         onCurrencySelectClick={(e) => this.onCurrencySelectClick(e.target)}
-        boxId={2}
+        boxId={"destiny"}
+        currencyDestiny={this.currencyDestiny}
       ></CurrencyBox>
     </div>)
   }

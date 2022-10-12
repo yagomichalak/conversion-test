@@ -34,7 +34,7 @@ class Utils extends Component {
 
   onCurrencySelectClick(target) {
     const selectedCurrency = target.value;
-    if (parseInt(target.id) === 1) {
+    if (target.id === "origin") {
       this.getAvailableCurrencies(selectedCurrency);
     } else {
       this.props.setCurrencyDestiny(selectedCurrency);
